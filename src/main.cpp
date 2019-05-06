@@ -34,7 +34,7 @@ bool getStructVerb(ifstream &ifstream, EngVerbs &sVer) {
 
 int main(int argc, char* argv[]) {
     setlocale(LC_ALL, "Russian");
-
+    srand (time(nullptr));
 
     ifstream file("../res/verbs.txt");
 
@@ -47,6 +47,14 @@ int main(int argc, char* argv[]) {
         sVerbs[i].engVerb[3] = sVerb.engVerb[3];
         i++;
     }
+    int ran = rand()%100;
+    cout << "напишите формы данного глагола (" << sVerbs[ran].rusVerb<< "): " << endl;
+    string in;
+    cin >> in;
+    if(!strcmp(in.c_str(),sVerbs[ran].engVerb[0].c_str()))
+        cout << "правильно." << endl;
+    else
+        cout << sVerbs[ran].engVerb[0];
     return 0;
 }
 
