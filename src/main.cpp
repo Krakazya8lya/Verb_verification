@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <algorithm>
 
 using namespace std;
 
@@ -19,11 +20,12 @@ bool getStructVerb(ifstream &ifstream, EngVerbs &sVer) {
     for(char letter : line) {
         if (spaceVelue >= 3) word += letter;
         if (letter == ' ' && spaceVelue<3) {
-            sVerb->engVerb[spaceVelue] = word;
+                sVerb->engVerb[spaceVelue] = word;
             word = "";
             spaceVelue++;
         }
         if(spaceVelue<3)
+            if(letter != ' ')
         word+=letter;
     }
     sVerb->rusVerb = word;
@@ -47,18 +49,24 @@ int main(int argc, char* argv[]) {
         sVerbs[i].engVerb[3] = sVerb.engVerb[3];
         i++;
     }
-    int ran = rand()%100;
-    cout << "напишите формы данного глагола (" << sVerbs[ran].rusVerb<< "): " << endl;
-    int index = 0;
-    while (index <3) {
-        string in;
+    int size;
 
-        cin >> in;
-        if (!strcmp(in.c_str(), sVerbs[ran].engVerb[0].c_str()))
-            cout << "правильно." << endl;
-        else
-            cout << "неправильно " << in <<" надо: " << sVerbs[ran].engVerb[index] << "\n";
-        index++;
+    cout << "введите количество проверяемых глаголов: ";
+    cin >> size;
+    for (int j = 0; j < size; ++j) {
+        int ran = rand() % 100;
+        cout << "напишите формы данного глагола (" << sVerbs[ran].rusVerb << "): " << endl;
+        int index = 0;
+        while (index < 3) {
+            string in;
+
+            cin >> in;
+            if (!strcmp(in.c_str(), sVerbs[ran].engVerb[index].c_str()))
+                cout << "правильно." << endl;
+            else
+                cout << "неправильно " << in << " надо: " << sVerbs[ran].engVerb[index] << "\n";
+            index++;
+        }
     }
     return 0;
 }
