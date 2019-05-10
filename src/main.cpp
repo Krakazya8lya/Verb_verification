@@ -49,12 +49,17 @@ int main(int argc, char* argv[]) {
     }
     int ran = rand()%100;
     cout << "напишите формы данного глагола (" << sVerbs[ran].rusVerb<< "): " << endl;
-    string in;
-    cin >> in;
-    if(!strcmp(in.c_str(),sVerbs[ran].engVerb[0].c_str()))
-        cout << "правильно." << endl;
-    else
-        cout << sVerbs[ran].engVerb[0];
+    int index = 0;
+    while (index <3) {
+        string in;
+
+        cin >> in;
+        if (!strcmp(in.c_str(), sVerbs[ran].engVerb[0].c_str()))
+            cout << "правильно." << endl;
+        else
+            cout << "неправильно " << in <<" надо: " << sVerbs[ran].engVerb[index] << "\n";
+        index++;
+    }
     return 0;
 }
 
