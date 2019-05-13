@@ -74,9 +74,10 @@ int main(int argc, char* argv[]) {
         }
         if (s == 3) d++;
     }
-
-    int procsent = ((float)d / size) * 100;
-    cout << "из "<< size << " правильно "<< d <<": " << procsent << "%";
+if (size > 0) {
+    int procsent = ((float) d / size) * 100;
+    cout << "из " << size << " правильно " << d << ": " << procsent << "%";
+}
     return 0;
 }
 
