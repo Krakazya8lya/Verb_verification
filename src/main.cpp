@@ -53,21 +53,30 @@ int main(int argc, char* argv[]) {
 
     cout << "введите количество проверяемых глаголов: ";
     cin >> size;
+    int s = 0;
+    int d = 0;
     for (int j = 0; j < size; ++j) {
         int ran = rand() % 100;
         cout << "напишите формы данного глагола (" << sVerbs[ran].rusVerb << "): " << endl;
         int index = 0;
+        s = 0;
         while (index < 3) {
             string in;
 
             cin >> in;
-            if (!strcmp(in.c_str(), sVerbs[ran].engVerb[index].c_str()))
-                cout << "правильно." << endl;
-            else
+            if (!strcmp(in.c_str(), sVerbs[ran].engVerb[index].c_str())) {
+            cout << "правильно." << endl;
+            s++;
+
+        }else
                 cout << "неправильно " << in << " надо: " << sVerbs[ran].engVerb[index] << "\n";
             index++;
         }
+        if (s == 3) d++;
     }
+
+    int procsent = ((float)d / size) * 100;
+    cout << "из "<< size << " правильно "<< d <<": " << procsent << "%";
     return 0;
 }
 
