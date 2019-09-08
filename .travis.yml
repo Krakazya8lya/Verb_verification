@@ -1,0 +1,11 @@
+language: C++
+
+dist: xenial
+
+script:
+  - mkdir build
+  - cd build
+  - cmake ..
+  - make
+  - make
+  - ./verb_verifivation_test
